@@ -40,7 +40,7 @@ def load_user(user_id):
 def index():
   with app.app_context():
     users = User.query.all() # works 
-  return render_template('index.html')
+  return render_template('dashboard.html')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
