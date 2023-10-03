@@ -166,7 +166,6 @@ def add_contact():
         linkedin = form.linkedin.data or None
         twitter = form.twitter.data or None
         website = form.website.data or None
-        speciality = form.speciality.data or None
         years_of_experience = form.experience.data or 0
         location = form.location.data or None
 

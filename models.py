@@ -18,7 +18,6 @@ class Contact(db.Model):
     linkedin = db.Column(db.String(255))
     twitter = db.Column(db.String(255))
     website = db.Column(db.String(255))
-    specialty = db.Column(db.String(80))
     years_of_experience = db.Column(db.Integer)
     location = db.Column(db.String(80))
     

@@ -21,7 +21,6 @@ class AddContactForm(FlaskForm):
     linkedin = StringField('LinkedIn', validators=[Optional(), URL()])
     twitter = StringField('Twitter', validators=[Optional(), URL()])
     website = StringField('Website', validators=[Optional(), URL()])
-    speciality = StringField('Speciality/Niche', validators=[Optional()])
     experience = IntegerField('Years of Experience', validators=[Optional(), NumberRange(min=0)])
     location = StringField('Location', validators=[Optional()])
     submit = SubmitField('Add')
