@@ -3,6 +3,7 @@ from flask_login import LoginManager, login_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
 from database import db
+from models import User
 import os
 
 login_manager = LoginManager()
