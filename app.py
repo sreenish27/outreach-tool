@@ -1,34 +1,27 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
-
 from database import db
 import os
 
 def create_app():
-  app = Flask(__name__)
-  db.init_app(app)
-  
-  return app
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'your_default_secret_key'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///your_local_db_path.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.init_app(app)
+    return app
   
 app = create_app()
 
 from models import User, Contact, Tracker
-# Configuration
-class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_default_secret_key'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///your_local_db_path.db'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-app = Flask(__name__)
-app.config.from_object(Config)
-
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
