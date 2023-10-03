@@ -97,7 +97,6 @@ def edit_contact(id):
         contact.linkedin = request.form.get('linkedin')
         contact.twitter = request.form.get('twitter')
         contact.website = request.form.get('website')
-        contact.speciality = request.form.get('speciality')
         contact.years_of_experience = int(request.form.get('experience'))
         contact.location = request.form.get('location')
         
