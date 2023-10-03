@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
 from flask_login import LoginManager, login_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, AddContactForm
 from database import db
 from models import User, Contact, Tracker
 import os
@@ -157,18 +157,18 @@ def delete_tracker(id):
 @app.route('/add_contact', methods=['GET', 'POST'])
 @login_required
 def add_contact():
-    if request.method == 'POST':
+    form = AddContactForm()
+    if form.validate_on_submit():
         # Fetch form data
-        name = request.form.get('name')
-        email = request.form.get('email')
-        phone = request.form.get('phone')
-        linkedin = request.form.get('linkedin')
-        twitter = request.form.get('twitter')
-        website = request.form.get('website')
-        speciality = request.form.get('speciality')
-        experience_value = request.form.get('experience')
-        years_of_experience = int(experience_value) if experience_value else 0
-        location = request.form.get('location')
+        name = form.name.data
+        email = form.email.data or None  # Use None if the field is empty
+        phone = form.phone.data or None
+        linkedin = form.linkedin.data or None
+        twitter = form.twitter.data or None
+        website = form.website.data or None
+        speciality = form.speciality.data or None
+        years_of_experience = form.experience.data or 0
+        location = form.location.data or None
 
         # Create a new Contact instance
         contact = Contact(name=name, email=email, phone=phone, linkedin=linkedin, twitter=twitter, website=website, speciality=speciality, years_of_experience=years_of_experience, location=location)
@@ -180,7 +180,8 @@ def add_contact():
         flash('Contact added successfully', 'success')
         return redirect(url_for('database_tab'))
 
-    return render_template('add_contact.html')
+    return render_template('add_contact.html', form=form)
+
 
 
 if __name__ == "__main__":
