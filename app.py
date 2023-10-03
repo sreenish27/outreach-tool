@@ -3,7 +3,7 @@ from flask_login import LoginManager, login_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
 from database import db
-from models import User
+from models import User, Contact, Tracker
 import os
 
 login_manager = LoginManager()
@@ -166,7 +166,8 @@ def add_contact():
         twitter = request.form.get('twitter')
         website = request.form.get('website')
         speciality = request.form.get('speciality')
-        years_of_experience = int(request.form.get('experience'))
+        experience_value = request.form.get('experience')
+        years_of_experience = int(experience_value) if experience_value else 0
         location = request.form.get('location')
 
         # Create a new Contact instance

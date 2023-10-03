@@ -36,6 +36,14 @@ class Tracker(db.Model):
     followup_1_date = db.Column(db.DateTime)
     followup_1_channel = db.Column(db.String(50)) 
     followup_1_reply = db.Column(db.Boolean, default=False)
+    
+    followup_2_date = db.Column(db.DateTime)
+    followup_2_channel = db.Column(db.String(50)) 
+    followup_2_reply = db.Column(db.Boolean, default=False)
+    
+    followup_3_date = db.Column(db.DateTime)
+    followup_3_channel = db.Column(db.String(50)) 
+    followup_3_reply = db.Column(db.Boolean, default=False)
 
     meeting_scheduled = db.Column(db.Boolean, default=False)
     meeting_date = db.Column(db.DateTime)
