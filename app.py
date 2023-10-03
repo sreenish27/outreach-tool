@@ -169,7 +169,7 @@ def add_contact():
         location = form.location.data or None
 
         # Create a new Contact instance
-        contact = Contact(name=name, email=email, phone=phone, linkedin=linkedin, twitter=twitter, website=website, speciality=speciality, years_of_experience=years_of_experience, location=location)
+        contact = Contact(name=name, email=email, phone=phone, linkedin=linkedin, twitter=twitter, website=website, years_of_experience=years_of_experience, location=location)
 
         # Add to the database
         db.session.add(contact)
