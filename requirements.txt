@@ -12,3 +12,4 @@ typing_extensions==4.8.0
 Werkzeug==3.0.0
 WTForms==3.0.1
 psycopg2-binary
+gunicorn
