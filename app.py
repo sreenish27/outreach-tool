@@ -8,7 +8,7 @@ import os
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'your_default_secret_key'
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///your_local_db_path.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///database.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
@@ -26,19 +26,17 @@ def create_app():
   
 app = create_app()
 
-from models import User, Contact, Tracker
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
-
-db.create_all()
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 # ... [rest of your routes and functions] ...
+@app.route('/')
+def index():
+  with app.app_context():
+    users = User.query.all() # works 
+  return render_template('index.html')
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -180,6 +178,5 @@ def add_contact():
 
 
 if __name__ == "__main__":
-    app = create_app()
     app.run(debug=False)
 
