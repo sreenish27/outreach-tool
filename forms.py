@@ -17,7 +17,7 @@ class LoginForm(FlaskForm):
 class AddContactForm(FlaskForm):
     name = StringField('Trainer Name', validators=[DataRequired()])
     email = StringField('Email', validators=[Optional(), Email()])
-    phone = TelField('Phone', validators=[Optional()])
+    phone = StringField('Phone', validators=[Optional()])
     linkedin = URLField('LinkedIn', validators=[Optional()])
     twitter = URLField('Twitter', validators=[Optional()])
     website = URLField('Website', validators=[Optional()])
