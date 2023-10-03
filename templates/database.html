@@ -28,7 +28,6 @@
             <td>{{ contact.location }}</td>
             <td>
                 <a href="{{ url_for('edit_contact', id=contact.id) }}">Edit</a> |
-                <a href="{{ url_for('delete_contact', id=contact.id) }}">Delete</a>
             </td>
         </tr>
         {% endfor %}
