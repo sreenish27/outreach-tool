@@ -4,8 +4,15 @@ from flask_login import LoginManager, login_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
 from models import User, Contact, Tracker
+from database import db
 import os
 
+def create_app():
+  app = Flask(__name__)
+  db.init_app(app)
+  
+  return app
+  
 # Configuration
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_default_secret_key'
@@ -15,7 +22,6 @@ class Config:
 app = Flask(__name__)
 app.config.from_object(Config)
 
-db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
