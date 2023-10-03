@@ -11,6 +11,17 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///your_local_db_path.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
+
+    # Initialize Flask-Login
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+
+    with app.app_context():
+        # Import and create database tables
+        from models import User, Contact, Tracker
+        db.create_all()
+
     return app
   
 app = create_app()
@@ -169,4 +180,6 @@ def add_contact():
 
 
 if __name__ == "__main__":
+    app = create_app()
     app.run(debug=False)
+
