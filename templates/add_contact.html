@@ -2,64 +2,71 @@
 {% block content %}
 <h2>Add Contact</h2>
 <form method="POST">
+    {{ form.hidden_tag() }}  <!-- This includes the CSRF token -->
+
     <!-- Trainer Name -->
     <div>
-        <label for="name">Trainer Name:</label>
-        <input type="text" id="name" name="name" required>
+        {{ form.name.label }}
+        {{ form.name() }}
+        {% if form.name.errors %}
+            <div class="errors">{{ form.name.errors[0] }}</div>
+        {% endif %}
     </div>
 
     <!-- Email -->
     <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        {{ form.email.label }}
+        {{ form.email() }}
+        {% if form.email.errors %}
+            <div class="errors">{{ form.email.errors[0] }}</div>
+        {% endif %}
     </div>
 
     <!-- Phone -->
     <div>
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone">
+        {{ form.phone.label }}
+        {{ form.phone() }}
     </div>
 
     <!-- LinkedIn -->
     <div>
-        <label for="linkedin">LinkedIn:</label>
-        <input type="url" id="linkedin" name="linkedin">
+        {{ form.linkedin.label }}
+        {{ form.linkedin() }}
     </div>
 
     <!-- Twitter -->
     <div>
-        <label for="twitter">Twitter:</label>
-        <input type="url" id="twitter" name="twitter">
+        {{ form.twitter.label }}
+        {{ form.twitter() }}
     </div>
 
     <!-- Website -->
     <div>
-        <label for="website">Website:</label>
-        <input type="url" id="website" name="website">
+        {{ form.website.label }}
+        {{ form.website() }}
     </div>
 
     <!-- Speciality/Niche -->
     <div>
-        <label for="speciality">Speciality/Niche:</label>
-        <input type="text" id="speciality" name="speciality">
+        {{ form.speciality.label }}
+        {{ form.speciality() }}
     </div>
 
     <!-- Years of Experience -->
     <div>
-        <label for="experience">Years of Experience:</label>
-        <input type="number" id="experience" name="experience" min="0">
+        {{ form.experience.label }}
+        {{ form.experience() }}
     </div>
 
     <!-- Location -->
     <div>
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location">
+        {{ form.location.label }}
+        {{ form.location() }}
     </div>
 
     <!-- Submit Button -->
     <div>
-        <input type="submit" value="Add">
+        {{ form.submit() }}
     </div>
 </form>
 {% endblock %}
-
