@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm
-from models import User, Contact, Tracker
+
 from database import db
 import os
 
@@ -13,6 +13,9 @@ def create_app():
   
   return app
   
+app = create_app()
+
+from models import User, Contact, Tracker
 # Configuration
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_default_secret_key'
