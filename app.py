@@ -1,17 +1,31 @@
-from flask import render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-from models import User
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, url_for, flash, redirect, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, login_user, login_required
+from werkzeug.security import generate_password_hash, check_password_hash
+from forms import RegistrationForm, LoginForm
+from models import User, Contact, Tracker
 import os
-db = SQLAlchemy(app)
+
+# Configuration
+class Config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_default_secret_key'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///your_local_db_path.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///your_local_db_path.db'
+db = SQLAlchemy(app)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
+# ... [rest of your routes and functions] ...
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -35,16 +49,7 @@ def login():
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
-#User Authentication
-from flask_login import LoginManager, login_user
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
     
 #Create a Route and Template for the Dashboard 
 from flask_login import login_required
@@ -161,4 +166,5 @@ def add_contact():
     return render_template('add_contact.html')
 
 
-
+if __name__ == "__main__":
+    app.run(debug=False)
