@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .sidebar {
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        padding: 20px;
+    }
+</style>
+
+<script>
+    function toggleSidebar() {
+        let sidebar = document.querySelector(".sidebar");
+        if (sidebar.style.width === "200px") {
+            sidebar.style.width = "0";
+        } else {
+            sidebar.style.width = "200px";
+        }
+    }
+</script>
+
+<div class="sidebar">
+    <button onclick="toggleSidebar()">☰</button>
+    <ul>
+        <li><a href="{{ url_for('database_tab') }}">Database</a></li>
+        <li><a href="{{ url_for('tracker_tab') }}">Tracker</a></li>
+        <li><a href="{{ url_for('add_contact') }}">Add Contact</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <h2>Dashboard</h2>
+    <!-- Display basic insights here -->
+    <p>Total Contacts: <!-- Display total contacts count --></p>
+    <p>Total Emails Sent: <!-- Display total emails sent count --></p>
+    <!-- Add more insights as needed -->
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Tracker Entry</h2>
+<form method="POST">
+    <!-- Who is Handling -->
+    <div>
+        <label for="handler">Who is Handling:</label>
+        <input type="text" id="handler" name="handler" value="{{ tracker.handler }}" required>
+    </div>
+
+    <!-- Trainer Name -->
+    <div>
+        <label for="trainer_name">Trainer Name:</label>
+        <input type="text" id="trainer_name" name="trainer_name" value="{{ tracker.trainer_name }}" required>
+    </div>
+
+    <!-- Initial Outreach -->
+    <div>
+        <label for="initial_outreach_date">Initial Outreach Date Sent:</label>
+        <input type="date" id="initial_outreach_date" name="initial_outreach_date" value="{{ tracker.initial_outreach_date }}">
+    </div>
+    <div>
+        <label for="initial_outreach_channel">Initial Outreach Channel:</label>
+        <input type="text" id="initial_outreach_channel" name="initial_outreach_channel" value="{{ tracker.initial_outreach_channel }}">
+    </div>
+    <div>
+        <label for="initial_outreach_reply">Initial Outreach Reply Received?</label>
+        <input type="text" id="initial_outreach_reply" name="initial_outreach_reply" value="{{ tracker.initial_outreach_reply }}">
+    </div>
+
+    <!-- Follow up #1 -->
+    <div>
+        <label for="followup_1_date">Follow up #1 Date Sent:</label>
+        <input type="date" id="followup_1_date" name="followup_1_date" value="{{ tracker.followup_1_date }}">
+    </div>
+    <div>
+        <label for="followup_1_channel">Follow up #1 Channel:</label>
+        <input type="text" id="followup_1_channel" name="followup_1_channel" value="{{ tracker.followup_1_channel }}">
+    </div>
+    <div>
+        <label for="followup_1_reply">Follow up #1 Reply Received?</label>
+        <input type="text" id="followup_1_reply" name="followup_1_reply" value="{{ tracker.followup_1_reply }}">
+    </div>
+
+    <!-- Follow up #2 -->
+    <div>
+        <label for="followup_2_date">Follow up #2 Date Sent:</label>
+        <input type="date" id="followup_2_date" name="followup_2_date" value="{{ tracker.followup_2_date }}">
+    </div>
+    <div>
+        <label for="followup_2_channel">Follow up #2 Channel:</label>
+        <input type="text" id="followup_2_channel" name="followup_2_channel" value="{{ tracker.followup_2_channel }}">
+    </div>
+    <div>
+        <label for="followup_2_reply">Follow up #2 Reply Received?</label>
+        <input type="text" id="followup_2_reply" name="followup_2_reply" value="{{ tracker.followup_2_reply }}">
+    </div>
+
+    <!-- Follow up #3 -->
+    <div>
+        <label for="followup_3_date">Follow up #3 Date Sent:</label>
+        <input type="date" id="followup_3_date" name="followup_3_date" value="{{ tracker.followup_3_date }}">
+    </div>
+    <div>
+        <label for="followup_3_channel">Follow up #3 Channel:</label>
+        <input type="text" id="followup_3_channel" name="followup_3_channel" value="{{ tracker.followup_3_channel }}">
+    </div>
+    <div>
+        <label for="followup_3_reply">Follow up #3 Reply Received?</label>
+        <input type="text" id="followup_3_reply" name="followup_3_reply" value="{{ tracker.followup_3_reply }}">
+    </div>
+
+    <!-- Meeting Details -->
+    <div>
+        <label for="meeting_scheduled">Meeting Scheduled:</label>
+        <input type="text" id="meeting_scheduled" name="meeting_scheduled" value="{{ tracker.meeting_scheduled }}">
+    </div>
+    <div>
+        <label for="meeting_date">Meeting Date:</label>
+        <input type="date" id="meeting_date" name="meeting_date" value="{{ tracker.meeting_date }}">
+    </div>
+    <div>
+        <label for="meeting_type">In person/Online:</label>
+        <input type="text" id="meeting_type" name="meeting_type" value="{{ tracker.meeting_type }}">
+    </div>
+
+    <!-- Already Present -->
+    <div>
+        <label for="already_present">Already present?</label>
+        <input type="text" id="already_present" name="already_present" value="{{ tracker.already_present }}">
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+        <input type="submit" value="Update">
+    </div>
+</form>
+{% endblock %}

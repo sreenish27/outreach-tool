@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Contact</h2>
+<form method="POST">
+    <!-- Trainer Name -->
+    <div>
+        <label for="name">Trainer Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <!-- Email -->
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <!-- Phone -->
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone">
+    </div>
+
+    <!-- LinkedIn -->
+    <div>
+        <label for="linkedin">LinkedIn:</label>
+        <input type="url" id="linkedin" name="linkedin">
+    </div>
+
+    <!-- Twitter -->
+    <div>
+        <label for="twitter">Twitter:</label>
+        <input type="url" id="twitter" name="twitter">
+    </div>
+
+    <!-- Website -->
+    <div>
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website">
+    </div>
+
+    <!-- Speciality/Niche -->
+    <div>
+        <label for="speciality">Speciality/Niche:</label>
+        <input type="text" id="speciality" name="speciality">
+    </div>
+
+    <!-- Years of Experience -->
+    <div>
+        <label for="experience">Years of Experience:</label>
+        <input type="number" id="experience" name="experience" min="0">
+    </div>
+
+    <!-- Location -->
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location">
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+        <input type="submit" value="Add">
+    </div>
+</form>
+{% endblock %}
+

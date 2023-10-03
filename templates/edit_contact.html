@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Contact</h2>
+<form method="POST">
+    <!-- Trainer Name -->
+    <div>
+        <label for="name">Trainer Name:</label>
+        <input type="text" id="name" name="name" value="{{ contact.name }}" required>
+    </div>
+
+    <!-- Email -->
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ contact.email }}" required>
+    </div>
+
+    <!-- Phone -->
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" value="{{ contact.phone }}">
+    </div>
+
+    <!-- LinkedIn -->
+    <div>
+        <label for="linkedin">LinkedIn:</label>
+        <input type="url" id="linkedin" name="linkedin" value="{{ contact.linkedin }}">
+    </div>
+
+    <!-- Twitter -->
+    <div>
+        <label for="twitter">Twitter:</label>
+        <input type="url" id="twitter" name="twitter" value="{{ contact.twitter }}">
+    </div>
+
+    <!-- Website -->
+    <div>
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website" value="{{ contact.website }}">
+    </div>
+
+    <!-- Speciality/Niche -->
+    <div>
+        <label for="speciality">Speciality/Niche:</label>
+        <input type="text" id="speciality" name="speciality" value="{{ contact.speciality }}">
+    </div>
+
+    <!-- Years of Experience -->
+    <div>
+        <label for="experience">Years of Experience:</label>
+        <input type="number" id="experience" name="experience" value="{{ contact.years_of_experience }}" min="0">
+    </div>
+
+    <!-- Location -->
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="{{ contact.location }}">
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+        <input type="submit" value="Update">
+    </div>
+</form>
+{% endblock %}
