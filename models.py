@@ -21,8 +21,12 @@ class Contact(db.Model):
     years_of_experience = db.Column(db.Integer)
     location = db.Column(db.String(80))
     
+    # Relationship to Tracker
+    trackers = db.relationship('Tracker', backref='contact', lazy=True)
+    
     def __repr__(self):
         return f'<Contact {self.name}>'
+
 
 class Tracker(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -48,6 +52,8 @@ class Tracker(db.Model):
     meeting_date = db.Column(db.DateTime)
     meeting_type = db.Column(db.String(50))
     already_present = db.Column(db.Boolean, default=False)
+    
+     contact_id = db.Column(db.Integer, db.ForeignKey('contact.id'))
     
     def __repr__(self):
         return f'<Tracker for {self.trainer_name}>'
