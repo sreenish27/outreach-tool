@@ -174,8 +174,14 @@ def add_contact():
         # Add to the database
         db.session.add(contact)
         db.session.commit()
+        
+        # Create a new Tracker instance for the contact
+        # Note: You might need to adjust this based on what initial data you want in the Tracker for a new contact
+        tracker = Tracker(contact_id=contact.id)  # Assuming Tracker has a contact_id field to relate to the Contact
+        db.session.add(tracker)
+        db.session.commit()
 
-        flash('Contact added successfully', 'success')
+        flash('Contact and tracker entry added successfully', 'success')
         return redirect(url_for('database_tab'))
 
     return render_template('add_contact.html', form=form)
