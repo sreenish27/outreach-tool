@@ -158,6 +158,19 @@ def delete_tracker(id):
 def add_contact():
     form = AddContactForm()
     if form.validate_on_submit():
+        # Check if any of the unique fields already exist
+        existing_contact = Contact.query.filter(
+            (Contact.email == form.email.data) |
+            (Contact.phone == form.phone.data) |
+            (Contact.linkedin == form.linkedin.data) |
+            (Contact.twitter == form.twitter.data) |
+            (Contact.website == form.website.data)
+        ).first()
+
+        if existing_contact:
+            flash('One or more of the provided details (email, phone, LinkedIn, Twitter, website) are already in use. Please check and try again.', 'danger')
+            return redirect(url_for('add_contact'))
+
         # Fetch form data
         name = form.name.data
         email = form.email.data or None  # Use None if the field is empty
@@ -176,7 +189,6 @@ def add_contact():
         db.session.commit()
         
         # Create a new Tracker instance for the contact
-        # Note: You might need to adjust this based on what initial data you want in the Tracker for a new contact
         tracker = Tracker(contact_id=contact.id)  # Assuming Tracker has a contact_id field to relate to the Contact
         db.session.add(tracker)
         db.session.commit()
