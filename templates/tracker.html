@@ -6,6 +6,8 @@
         <tr>
             <th>Who is Handling</th>
             <th>Trainer Name</th>
+            <th>Contact Name</th> <!-- Added this column -->
+            <th>Contact Email</th> <!-- Added this column -->
             <th>Initial Outreach Date Sent</th>
             <th>Initial Outreach Channel</th>
             <th>Initial Outreach Reply Received?</th>
@@ -30,6 +32,8 @@
         <tr>
             <td>{{ tracker.handler }}</td>
             <td>{{ tracker.trainer_name }}</td>
+            <td>{{ tracker.contact.name }}</td> <!-- Added this data cell -->
+            <td>{{ tracker.contact.email }}</td> <!-- Added this data cell -->
             <td>{{ tracker.initial_outreach_date }}</td>
             <td>{{ tracker.initial_outreach_channel }}</td>
             <td>{{ tracker.initial_outreach_reply }}</td>
@@ -55,4 +59,3 @@
     </tbody>
 </table>
 {% endblock %}
-
