@@ -53,7 +53,7 @@ class Tracker(db.Model):
     meeting_type = db.Column(db.String(50))
     already_present = db.Column(db.Boolean, default=False)
     
-     contact_id = db.Column(db.Integer, db.ForeignKey('contact.id'))
+    contact_id = db.Column(db.Integer, db.ForeignKey('contact.id'))
     
     def __repr__(self):
         return f'<Tracker for {self.trainer_name}>'
